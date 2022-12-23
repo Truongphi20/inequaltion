@@ -192,9 +192,9 @@ def phogia(index,tieu_bien3): #từ index của biến còn lại và hàm tiêu
     min_bien = []
     for i in range(len(tieu_bien3)):
         if tieu_bien3[i][index] > 0:
-            min_bien.append(-tieu_bien3[i][-1]/ tieu_bien3[i][index])
+            min_bien.append(float('%.6f' % (-tieu_bien3[i][-1]/ tieu_bien3[i][index])))
         elif tieu_bien3[i][index] < 0:
-            max_bien.append(-tieu_bien3[i][-1]/ tieu_bien3[i][index])
+            max_bien.append(float('%.10f' % (-tieu_bien3[i][-1]/ tieu_bien3[i][index])))
     #print(max_bien)
     #print(min_bien)
 
@@ -322,23 +322,23 @@ def Solve_Inequal(biens, cuctri, he_bpt):
 	## Calculation
 	classa = 1
 	pho = phogia(order[-1],lib_bp[-1]) # Pho cua bien cuc tri
-	#print(pho)
+	print(pho)
 	lib_ng = {"/"+str(i):pho[i] for i in range(len(pho))} #Them vao thu vien
 	#print(lib_ng)
 	lib_tt = {}
 	#print(lib_tt)
 
 	while classa <= len(lib_bp)-1 and classa > 0:
-		#print(classa)
+		print(f'class: {classa}')
 
 		ng_sd, keys = call_ng(lib_ng,classa) # goi nghiem su dung
-		#print(ng_sd)
+		print(ng_sd)
 		#print(keys)
 
 		#print(classa)
 
 		lib_tt = add_libtt(cuctri,lib_tt,order_tl,classa-1,ng_sd) # them thu tu vao lib thu tu
-		#print(lib_tt)
+		print(lib_tt)
 
 		if lib_tt[classa-1] == "-": # Neu khong phai la cuc tri thi giai het
 
@@ -350,7 +350,7 @@ def Solve_Inequal(biens, cuctri, he_bpt):
 				hr = thay_nghiem(lib_bp[len(lib_bp)-classa-1], order_tl[classa-1], ng)
 				#print(hr)
 				pho = phogia(order[len(order)-1-classa],hr)
-				#print(pho)
+				print(f'phobth: {pho}')
 
 				#print(classa)
 				if len(pho) != 0:
@@ -370,15 +370,17 @@ def Solve_Inequal(biens, cuctri, he_bpt):
 
 			ng = ng_sd[lib_tt[classa-1]]
 			key = keys[lib_tt[classa-1]]
+			print(f'ngct:{ng}')
 			#print(key)
 
-			hr = thay_nghiem(lib_bp[len(lib_bp)-classa-1], order_tl[classa-1], ng)
-			#print(hr)
-			pho = phogia(order[len(order)-1-classa],hr)
-			print(pho)
+			hrct = thay_nghiem(lib_bp[len(lib_bp)-classa-1], order_tl[classa-1], ng)
+			print(hrct)
+			phoct = phogia(order[len(order)-1-classa],hrct)
+			#print(f'test{phogia(3,hrct)}')
+			print(f'phoct: {phoct}')
 
 			#print(1)
-			if len(pho) == 0:
+			if len(phoct) == 0:
 				#print(ng_sd)
 				if lib_tt[classa-1] == len(ng_sd)-1 and ct_bor[classa-1] == -1:
 					#print("he")
@@ -392,8 +394,8 @@ def Solve_Inequal(biens, cuctri, he_bpt):
 				lib_tt[classa-1] = lib_tt[classa-1] - ct_bor[classa-1]
 				#print(f'lb la {lib_tt[classa-1]}')
 			else:
-				for i in range(len(pho)):
-					lib_ng['/'+str(i) + key]  = pho[i]
+				for i in range(len(phoct)):
+					lib_ng['/'+str(i) + key]  = phoct[i]
 				classa += 1
 		
 	#print(Tra_kq_ct(lib_ng,order))
@@ -414,3 +416,14 @@ he_bpt = ["2*m+5*g+7*h+10*c<=100","2*m+5*g+10*h+15*c<=50", "4*m+8*g+11*h+19*c-G=
 
 print(Solve_Inequal(biens, cuctri, he_bpt))
 '''
+
+biens = ["h","c","w","b","W"] # Đặt ẩn tương ứng là lượng item lấy ở từng item
+cuctri = [0,0,0,0,-1]
+
+he_bpt = ["5*h+7*c+6*w+3*b-W==0", # Tổng khối lượng hàng hóa phải bé hơn 3kg
+            "W<=6","W>=1",
+            "h>=0","c>=0", # Các lượng item phải lớn hơn hoặc bằng 0
+            "w>=0","b>=0"]
+#print(len(giaihebpt(he_bpt,biens))) 
+items_lay = Solve_Inequal(biens, cuctri, he_bpt)
+print(items_lay)
