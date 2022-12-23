@@ -231,7 +231,7 @@ def tach_key(string): #Tach key lop tren thanh key lop duoi {/10/3/2} --> [/10/3
 	return rs
 #print(tach_key("/10/3/2"))
 
-def order_tl(order): #Tao list of list order tich luy {[0,3,4,5] --> [[5],[4,5],[3,4,5],[0,3,4,5]]}
+def order_tlv(order): #Tao list of list order tich luy {[0,3,4,5] --> [[5],[4,5],[3,4,5],[0,3,4,5]]}
 	rs = []
 	for i in range(1,len(order)+1):
 		rs.append(order[(len(order)-i):(len(order)):])
@@ -278,13 +278,14 @@ def call_ng(lib_ng, classa): # Goi nghiem su dung theo classa
 	return ng_sd, keys
 
 def add_libtt(ct,lib_tt, order_tl, classa,ng_sd): # Them nghiem thu tu
-	ct_s = ct[order_tl[-1][len(ct)-1-classa]]
-	if ct_s == 0:
-		lib_tt[classa] = "-"
-	elif ct_s == 1:
-		lib_tt[classa] = len(ng_sd)-1
-	else:
-		lib_tt[classa] = 0
+	if classa not in lib_tt: 
+		ct_s = ct[order_tl[-1][len(ct)-1-classa]]
+		if ct_s == 0:
+			lib_tt[classa] = "-"
+		elif ct_s == 1:
+			lib_tt[classa] = len(ng_sd)-1
+		else:
+			lib_tt[classa] = 0
 	return lib_tt
 
 def add_libttf(ct_s,ng_sd): # Them nghiem thu tu khi bat dau
@@ -303,105 +304,115 @@ def nearest(index, ct_bor): # Tra ve class cua bien cuc trij gan nhat
 			break
 		i += 1
 	return index - i
-
 #print(nearest(1, [1, -1, 0, 0]))
 
-biens = ["a","b","M","P"] # Khai báo tên biến
-cuctri = [0,0,-1,1]	# Khai báo biến có phải cực trị (0: không phải, 1: cực đại, -1: cực tiểu)
-he_bpt = ["2*a+b<=6","a+b>=0","a-b>=1","a+b-P==0","a-b-M==0"]
+def Solve_Inequal(biens, cuctri, he_bpt):
 
-## Reperation
-nguon_goc = truy_nguon(he_bpt) # Nguon goc tu phuong trinh (1) hay bpt (0)
-#print(nguon_goc)
+	## Reperation
+	nguon_goc = truy_nguon(he_bpt) # Nguon goc tu phuong trinh (1) hay bpt (0)
+	#print(nguon_goc)
 
-order = order_bien(biens,cuctri) # Thu tu giai, uu tien giai bien cuc tri truoc
-#print(order)
+	order = order_bien(biens,cuctri) # Thu tu giai, uu tien giai bien cuc tri truoc
+	#print(order)
 
-order_tl = order_tl(order) # Thu tu index the vao de tim pho gia
-#print(order_tl)
+	order_tl = order_tlv(order) # Thu tu index the vao de tim pho gia
+	#print(order_tl)
 
-he = re_order_ma(mak_hebpt_matrix(he_bpt,biens),nguon_goc,order) # Tao ma tran tu he bpt
-#print(he)
+	he = re_order_ma(mak_hebpt_matrix(he_bpt,biens),nguon_goc,order) # Tao ma tran tu he bpt
+	#print(he)
 
-ct_bor = [cuctri[order_tl[-1][len(cuctri)-1-i]] for i in range(len(cuctri))] # list cuc tri theo order
-#print(ct_bor)
+	ct_bor = [cuctri[order_tl[-1][len(cuctri)-1-i]] for i in range(len(cuctri))] # list cuc tri theo order
+	#print(ct_bor)
 
-lib_bp = giai_bien(order[-1],order,he,nguon_goc) # Thu vien he tieu bien lan luot cac bien theo order
-#print(lib_bp)
+	lib_bp = giai_bien(order[-1],order,he,nguon_goc) # Thu vien he tieu bien lan luot cac bien theo order
+	#print(lib_bp)
 
 
-## Calculation
-classa = 1
-pho = phogia(order[-1],lib_bp[-1]) # Pho cua bien cuc tri
-#print(pho)
-lib_ng = {"/"+str(i):pho[i] for i in range(len(pho))} #Them vao thu vien
-#print(lib_ng)
-lib_tt = {0:add_libttf(cuctri[order[-1]],[key for key in lib_ng])}
-#print(lib_tt)
-
-while classa <= len(lib_bp)-1 and classa > 0:
-	#print(classa)
-
-	ng_sd, keys = call_ng(lib_ng,classa) # goi nghiem su dung
-	#print(ng_sd)
-	#print(keys)
-
-	#print(classa)
-	lib_tt = add_libtt(cuctri,lib_tt,order_tl,classa,ng_sd) # them thu tu vao lib thu tu
+	## Calculation
+	classa = 1
+	pho = phogia(order[-1],lib_bp[-1]) # Pho cua bien cuc tri
+	#print(pho)
+	lib_ng = {"/"+str(i):pho[i] for i in range(len(pho))} #Them vao thu vien
+	#print(lib_ng)
+	lib_tt = {0:add_libttf(cuctri[order[-1]],[key for key in lib_ng])}
 	#print(lib_tt)
 
-	if lib_tt[classa-1] == "-": # Neu khong phai la cuc tri thi giai het
+	while classa <= len(lib_bp)-1 and classa > 0:
+		#print(classa)
 
-		tem = 0
+		ng_sd, keys = call_ng(lib_ng,classa) # goi nghiem su dung
 		#print(ng_sd)
-		for ng, key in zip(ng_sd,keys):
-			#print(ng)
-			#print(order_tl[classa-1])
+		#print(keys)
+
+		#print(classa)
+
+		lib_tt = add_libtt(cuctri,lib_tt,order_tl,classa-1,ng_sd) # them thu tu vao lib thu tu
+		#print(lib_tt)
+
+		if lib_tt[classa-1] == "-": # Neu khong phai la cuc tri thi giai het
+
+			tem = 0
+			#print(ng_sd)
+			for ng, key in zip(ng_sd,keys):
+				#print(ng)
+				#print(order_tl[classa-1])
+				hr = thay_nghiem(lib_bp[len(lib_bp)-classa-1], order_tl[classa-1], ng)
+				#print(hr)
+				pho = phogia(order[len(order)-1-classa],hr)
+				#print(pho)
+
+				#print(classa)
+				if len(pho) != 0:
+					for i in range(len(pho)):
+						lib_ng['/'+str(i) + key]  = pho[i]
+				else:
+					#print(1)
+					tem += 1 
+
+			if tem == len(ng_sd):
+				classa = nearest(classa, ct_bor)
+				lib_tt[classa] = lib_tt[classa] - ct_bor[classa]
+			classa += 1
+
+
+		else:   # Neu la bien cuc tri can xet giai
+
+			ng = ng_sd[lib_tt[classa-1]]
+			key = keys[lib_tt[classa-1]]
+			#print(key)
+
 			hr = thay_nghiem(lib_bp[len(lib_bp)-classa-1], order_tl[classa-1], ng)
 			#print(hr)
 			pho = phogia(order[len(order)-1-classa],hr)
 			#print(pho)
 
-			#print(classa)
-			if len(pho) != 0:
+			#print(1)
+			if len(pho) == 0:
+				#print(ng_sd)
+				if lib_tt[classa-1] == len(ng_sd)-1 and ct_bor[classa-1] == -1:
+					#print("he")
+					classa = classa - 1
+				elif lib_tt[classa-1] == 0 and ct_bor[classa-1] == 1:
+	   				classa = classa - 1
+	   				#print("ho")
+				#print(lib_tt)
+				#print("hoho")
+				#print(f'{lib_tt[classa-1]}- {ct_bor[classa-1]}')
+				lib_tt[classa-1] = lib_tt[classa-1] - ct_bor[classa-1]
+				#print(f'lb la {lib_tt[classa-1]}')
+			else:
 				for i in range(len(pho)):
 					lib_ng['/'+str(i) + key]  = pho[i]
-			else:
-				#print(1)
-				tem += 1 
-
-		if tem == len(ng_sd):
-			classa = nearest(classa, ct_bor)
-			lib_tt[classa] = lib_tt[classa] - ct_bor[classa]
-		classa += 1
+				classa += 1
+		
+	#print(Tra_kq_ct(lib_ng,order))
+	return  [biens[index] for index in order], Tra_kq_ct(lib_ng,order)
 
 
-	else:   # Neu la bien cuc tri can xet giai
+biens = ["P","b","M","a"] # Khai báo tên biến
+cuctri = [-1,0,1,0]	# Khai báo biến có phải cực trị (0: không phải, 1: cực đại, -1: cực tiểu)
+he_bpt = ["2*a+b<=6","a+b>=0","a-b>=1","a+b-P==0","a-b-M==0"]
 
-		ng = ng_sd[lib_tt[classa-1]]
-		key = keys[lib_tt[classa-1]]
-		#print(key)
+print(Solve_Inequal(biens, cuctri, he_bpt))
 
-		hr = thay_nghiem(lib_bp[len(lib_bp)-classa-1], order_tl[classa-1], ng)
-		#print(hr)
-		pho = phogia(order[len(order)-1-classa],hr)
-		#print(pho)
-
-		#print(1)
-		if len(pho) == 0:
-			#print(ng_sd)
-			if lib_tt[classa-1] == len(ng_sd)-1:
-   				classa = classa - 1
-			#print(lib_tt)
-			#print(classa)
-			lib_tt[classa] = lib_tt[classa] - ct_bor[classa]
-		else:
-			for i in range(len(pho)):
-				lib_ng['/'+str(i) + key]  = pho[i]
-	
-		classa += 1
-	
-	
-
-print(Tra_kq_ct(lib_ng,order))
 
