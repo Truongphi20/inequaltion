@@ -288,15 +288,6 @@ def add_libtt(ct,lib_tt, order_tl, classa,ng_sd): # Them nghiem thu tu
 			lib_tt[classa] = 0
 	return lib_tt
 
-def add_libttf(ct_s,ng_sd): # Them nghiem thu tu khi bat dau
-	if ct_s == 0:
-		a = "-"
-	elif ct_s == 1:
-		a = len(ng_sd)-1
-	else:
-		a = 0
-	return a
-
 def nearest(index, ct_bor): # Tra ve class cua bien cuc trij gan nhat
 	i = 0
 	while i <= index and i >= 0:
@@ -334,7 +325,7 @@ def Solve_Inequal(biens, cuctri, he_bpt):
 	#print(pho)
 	lib_ng = {"/"+str(i):pho[i] for i in range(len(pho))} #Them vao thu vien
 	#print(lib_ng)
-	lib_tt = {0:add_libttf(cuctri[order[-1]],[key for key in lib_ng])}
+	lib_tt = {}
 	#print(lib_tt)
 
 	while classa <= len(lib_bp)-1 and classa > 0:
@@ -384,7 +375,7 @@ def Solve_Inequal(biens, cuctri, he_bpt):
 			hr = thay_nghiem(lib_bp[len(lib_bp)-classa-1], order_tl[classa-1], ng)
 			#print(hr)
 			pho = phogia(order[len(order)-1-classa],hr)
-			#print(pho)
+			print(pho)
 
 			#print(1)
 			if len(pho) == 0:
@@ -408,11 +399,18 @@ def Solve_Inequal(biens, cuctri, he_bpt):
 	#print(Tra_kq_ct(lib_ng,order))
 	return  [biens[index] for index in order], Tra_kq_ct(lib_ng,order)
 
-
-biens = ["P","b","M","a"] # Khai báo tên biến
-cuctri = [-1,0,1,0]	# Khai báo biến có phải cực trị (0: không phải, 1: cực đại, -1: cực tiểu)
+'''
+biens = ["a","b","M","P"] # Khai báo tên biến
+cuctri = [0,0,-1,1]	# Khai báo biến có phải cực trị (0: không phải, 1: cực đại, -1: cực tiểu)
 he_bpt = ["2*a+b<=6","a+b>=0","a-b>=1","a+b-P==0","a-b-M==0"]
 
 print(Solve_Inequal(biens, cuctri, he_bpt))
+'''
+'''
+biens = ["m","g","h","c","G"] # Khai báo tên biến
+cuctri = [0,0,0,0,1]	# Khai báo biến có phải cực trị (0: không phải, 1: cực đại, -1: cực tiểu)
+he_bpt = ["2*m+5*g+7*h+10*c<=100","2*m+5*g+10*h+15*c<=50", "4*m+8*g+11*h+19*c-G==0",
+			"m>=1","g>=1","h>=1","c>=1"]
 
-
+print(Solve_Inequal(biens, cuctri, he_bpt))
+'''
