@@ -306,6 +306,14 @@ def ClearLib_ng(tv,classa): # Clear cac thanh phan trong lib_ng lon hon class ho
     #print(tv)
     return tv
 
+def ClearLib_tt(tv,classa): # Clear cac thanh phan trong lib_ng lon hon class hoi ve
+    keys = [key for key in tv]
+    for key in keys:
+        if key >= classa:
+            tv.pop(key)
+    #print(tv)
+    return tv
+
 def Solve_Inequal(biens, cuctri, he_bpt):
 
 	## Reperation
@@ -372,9 +380,14 @@ def Solve_Inequal(biens, cuctri, he_bpt):
 
 			if tem == len(ng_sd):
 				classa = nearest(classa, ct_bor)
+				k = lib_tt[classa] - ct_bor[classa]
+				#print(f'k: {k}')
+				if k < 0 or k > len(call_ng(lib_ng,classa)[0])-1:
+					classa = classa -1 
 				lib_tt[classa] = lib_tt[classa] - ct_bor[classa]
-				print(classa)
+				#print(classa)
 				lib_ng = ClearLib_ng(lib_ng,classa+2)
+				lib_tt = ClearLib_tt(lib_tt,classa+1)
 			classa += 1
 
 
@@ -386,7 +399,7 @@ def Solve_Inequal(biens, cuctri, he_bpt):
 			#print(key)
 
 			hrct = thay_nghiem(lib_bp[len(lib_bp)-classa-1], order_tl[classa-1], ng)
-			print(hrct)
+			#print(hrct)
 			phoct = phogia(order[len(order)-1-classa],hrct)
 			#print(f'test{phogia(3,hrct)}')
 			print(f'phoct: {phoct}')
@@ -408,7 +421,7 @@ def Solve_Inequal(biens, cuctri, he_bpt):
 			else:
 				for i in range(len(phoct)):
 					lib_ng['/'+str(i) + key]  = phoct[i]
-				print(lib_ng)
+				#print(lib_ng)
 				classa += 1
 		
 	#print(Tra_kq_ct(lib_ng,order))
@@ -429,7 +442,7 @@ he_bpt = ["2*m+5*g+7*h+10*c<=100","2*m+5*g+10*h+15*c<=50", "4*m+8*g+11*h+19*c-G=
 
 print(Solve_Inequal(biens, cuctri, he_bpt))
 '''
-
+"""
 biens = ["h","c","w","b","W"] # Đặt ẩn tương ứng là lượng item lấy ở từng item
 cuctri = [0,0,0,0,-1]
 
@@ -437,6 +450,19 @@ he_bpt = ["5*h+7*c+6*w+3*b-W==0", # Tổng khối lượng hàng hóa phải bé
             "W<=6","W>=1",
             "h>=0","c>=0", # Các lượng item phải lớn hơn hoặc bằng 0
             "w>=0","b>=0"]
+#print(len(giaihebpt(he_bpt,biens))) 
+items_lay = Solve_Inequal(biens, cuctri, he_bpt)
+print(items_lay)
+"""
+
+biens = ["h","b","S","W"] # Đặt ẩn tương ứng là lượng item lấy ở từng item
+cuctri = [0,0,1,-1]
+
+he_bpt = ["10*h+7*b-W==0", # Tổng khối lượng hàng hóa phải bé hơn 3kg
+            "W<=20","W>=1",
+            "15*h+10*b-S==0", # Tong score phai lon nhat
+            "h>=0", # Các lượng item phải lớn hơn hoặc bằng 0
+            "b>=0"]
 #print(len(giaihebpt(he_bpt,biens))) 
 items_lay = Solve_Inequal(biens, cuctri, he_bpt)
 print(items_lay)
