@@ -297,6 +297,15 @@ def nearest(index, ct_bor): # Tra ve class cua bien cuc trij gan nhat
 	return index - i
 #print(nearest(1, [1, -1, 0, 0]))
 
+def ClearLib_ng(tv,classa): # Clear cac thanh phan trong lib_ng lon hon class hoi ve
+    keys = [key for key in tv]
+    for key in keys:
+        if key.count("/") >= classa:
+            tv.pop(key)
+
+    #print(tv)
+    return tv
+
 def Solve_Inequal(biens, cuctri, he_bpt):
 
 	## Reperation
@@ -330,6 +339,7 @@ def Solve_Inequal(biens, cuctri, he_bpt):
 
 	while classa <= len(lib_bp)-1 and classa > 0:
 		print(f'class: {classa}')
+		#print(f'lib_ng: {lib_ng}')
 
 		ng_sd, keys = call_ng(lib_ng,classa) # goi nghiem su dung
 		print(ng_sd)
@@ -363,6 +373,8 @@ def Solve_Inequal(biens, cuctri, he_bpt):
 			if tem == len(ng_sd):
 				classa = nearest(classa, ct_bor)
 				lib_tt[classa] = lib_tt[classa] - ct_bor[classa]
+				print(classa)
+				lib_ng = ClearLib_ng(lib_ng,classa+2)
 			classa += 1
 
 
@@ -396,6 +408,7 @@ def Solve_Inequal(biens, cuctri, he_bpt):
 			else:
 				for i in range(len(phoct)):
 					lib_ng['/'+str(i) + key]  = phoct[i]
+				print(lib_ng)
 				classa += 1
 		
 	#print(Tra_kq_ct(lib_ng,order))
