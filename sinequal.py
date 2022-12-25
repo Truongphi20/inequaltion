@@ -416,6 +416,8 @@ def Solve_Inequal(biens, cuctri, he_bpt):
 				#print(f'{lib_tt[classa-1]}- {ct_bor[classa-1]}')
 				lib_tt[classa-1] = lib_tt[classa-1] - ct_bor[classa-1]
 				#print(f'lb la {lib_tt[classa-1]}')
+				lib_ng = ClearLib_ng(lib_ng,classa+1)
+				lib_tt = ClearLib_tt(lib_tt,classa)
 			else:
 				for i in range(len(phoct)):
 					lib_ng['/'+str(i) + key]  = phoct[i]
@@ -466,6 +468,7 @@ he_bpt = ["10*h+7*b-W==0", # Tổng khối lượng hàng hóa phải bé hơn 3
 items_lay = Solve_Inequal(biens, cuctri, he_bpt)
 print(items_lay)
 '''
+
 
 biens = ["h","l","c","w","b","p","n","S","W"] # Đặt ẩn tương ứng là lượng item lấy ở từng item
 cuctri = [0,0,0,0,0,0,0,1,-1]
