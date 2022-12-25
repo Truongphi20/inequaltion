@@ -346,17 +346,17 @@ def Solve_Inequal(biens, cuctri, he_bpt):
 	#print(lib_tt)
 
 	while classa <= len(lib_bp)-1 and classa > 0:
-		print(f'class: {classa}')
+		#print(f'class: {classa}')
 		#print(f'lib_ng: {lib_ng}')
 
 		ng_sd, keys = call_ng(lib_ng,classa) # goi nghiem su dung
-		print(ng_sd)
+		#print(ng_sd)
 		#print(keys)
 
 		#print(classa)
 
 		lib_tt = add_libtt(cuctri,lib_tt,order_tl,classa-1,ng_sd) # them thu tu vao lib thu tu
-		print(lib_tt)
+		#print(lib_tt)
 
 		if lib_tt[classa-1] == "-": # Neu khong phai la cuc tri thi giai het
 
@@ -368,7 +368,7 @@ def Solve_Inequal(biens, cuctri, he_bpt):
 				hr = thay_nghiem(lib_bp[len(lib_bp)-classa-1], order_tl[classa-1], ng)
 				#print(hr)
 				pho = phogia(order[len(order)-1-classa],hr)
-				print(f'phobth: {pho}')
+				#print(f'phobth: {pho}')
 
 				#print(classa)
 				if len(pho) != 0:
@@ -381,9 +381,9 @@ def Solve_Inequal(biens, cuctri, he_bpt):
 			if tem == len(ng_sd):
 				classa = nearest(classa, ct_bor)
 				k = lib_tt[classa] - ct_bor[classa]
-				print(f'k: {k}, {classa}')
-				print(lib_ng)
-				print(call_ng(lib_ng,classa+1)[0])
+				#print(f'k: {k}, {classa}')
+				#print(lib_ng)
+				#print(call_ng(lib_ng,classa+1)[0])
 				if k < 0 or k > len(call_ng(lib_ng,classa+1)[0])-1:
 					classa = classa -1 
 				lib_tt[classa] = lib_tt[classa] - ct_bor[classa]
@@ -404,19 +404,15 @@ def Solve_Inequal(biens, cuctri, he_bpt):
 			#print(hrct)
 			phoct = phogia(order[len(order)-1-classa],hrct)
 			#print(f'test{phogia(3,hrct)}')
-			print(f'phoct: {phoct}')
+			#print(f'phoct: {phoct}')
 
 			#print(1)
 			if len(phoct) == 0:
 				#print(ng_sd)
-				if lib_tt[classa-1] == len(ng_sd)-1 and ct_bor[classa-1] == -1:
-					#print("he")
-					classa = classa - 1
-				elif lib_tt[classa-1] == 0 and ct_bor[classa-1] == 1:
-	   				classa = classa - 1
-	   				#print("ho")
+				k = lib_tt[classa-1] - ct_bor[classa-1]
+				if k < 0 or k > len(call_ng(ng_sd,classa+1)[0])-1:
+					classa = classa -1
 				#print(lib_tt)
-				#print("hoho")
 				#print(f'{lib_tt[classa-1]}- {ct_bor[classa-1]}')
 				lib_tt[classa-1] = lib_tt[classa-1] - ct_bor[classa-1]
 				#print(f'lb la {lib_tt[classa-1]}')
@@ -470,16 +466,16 @@ he_bpt = ["10*h+7*b-W==0", # Tổng khối lượng hàng hóa phải bé hơn 3
 items_lay = Solve_Inequal(biens, cuctri, he_bpt)
 print(items_lay)
 '''
-"""
-biens = ["h","l","c","w","b","p","n","W"] # Đặt ẩn tương ứng là lượng item lấy ở từng item
-cuctri = [0,0,0,0,0,0,0,-1]
+
+biens = ["h","l","c","w","b","p","n","S","W"] # Đặt ẩn tương ứng là lượng item lấy ở từng item
+cuctri = [0,0,0,0,0,0,0,1,-1]
 
 he_bpt = ["100*h+2200*l+350*c+192*w+70*b+200*p+333*n-W==0", # Tổng khối lượng hàng hóa phải bé hơn 3kg
-            "W<=3000","W>=1",
-            #"150*h+500*l+60*c+30*w+100*b+500*p+40*n-S==0",
+            "W<=3000","W>=171",
+            "150*h+500*l+60*c+30*w+100*b+500*p+40*n-S==0",
+            "S>=251",
             "h>=0","l>=0","c>=0", # Các lượng item phải lớn hơn hoặc bằng 0
             "w>=0","b>=0","p>=0","n>=0"]
 #print(len(giaihebpt(he_bpt,biens))) 
 items_lay = Solve_Inequal(biens, cuctri, he_bpt)
 print(items_lay)
-"""
