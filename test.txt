@@ -1,0 +1,5 @@
+biens = ["a","b","M","P"] # Khai báo tên biến
+cuctri = [0,0,-1,1]	# Khai báo biến có phải cực trị (0: không phải, 1: cực đại, -1: cực tiểu)
+he_bpt = ["2*a+b<=6","a+b>=0","a-b>=1","a+b-P==0","a-b-M==0"]
+
+print(Solve_Inequal(biens, cuctri, he_bpt))
