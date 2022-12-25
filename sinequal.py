@@ -1,5 +1,6 @@
 import numpy as np
 import math
+import argparse
 
 def check_int(num_tex): #Check xem text có phải số hay không
 	res = False
@@ -426,3 +427,45 @@ def Solve_Inequal(biens, cuctri, he_bpt):
 		
 	#print(Tra_kq_ct(lib_ng,order))
 	return  [biens[index] for index in order], Tra_kq_ct(lib_ng,order)
+
+
+def ProcessInput(file):
+	file = open(file,"r").read() #Read data
+	#print(file)
+
+	liste = file.split("\n")
+	#print(liste)
+
+	liste = list(map(lambda l: l.strip(),liste)) # Strip line
+	#print(liste)
+
+	liste = [l for l in liste if len(l) > 0] # Remove empty element
+	#print(liste)
+
+	he = liste[:-1]
+	#print(he)
+
+	json = eval(liste[-1])
+	#print(type(json))
+
+	biens = [key for key in json]
+	ct = [json[bien] for bien in biens]
+
+	#print(biens,ct)
+	return he, biens, ct
+
+#print(ProcessInput("ex.csv"))
+
+# Initialize parser
+parser = argparse.ArgumentParser()
+ 
+# Adding optional argument
+parser.add_argument("-f", "--file_input")
+parser.add_argument("-v",'--version', action='version', version='%(prog)s 1.0',help = 'show version')
+
+# Read arguments from command line
+args = parser.parse_args()
+
+he_bpt, biens, cuctri = ProcessInput(args.file_input)
+
+print(Solve_Inequal(biens, cuctri, he_bpt))
