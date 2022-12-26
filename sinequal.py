@@ -339,7 +339,7 @@ def Solve_Inequal(biens, cuctri, he_bpt):
 	## Calculation
 	classa = 1
 	pho = phogia(order[-1],lib_bp[-1]) # Pho cua bien cuc tri
-	#print(pho)
+	print(pho)
 	lib_ng = {"/"+str(i):pho[i] for i in range(len(pho))} #Them vao thu vien
 	#print(lib_ng)
 	lib_tt = {}
@@ -356,7 +356,7 @@ def Solve_Inequal(biens, cuctri, he_bpt):
 		#print(classa)
 
 		lib_tt = add_libtt(cuctri,lib_tt,order_tl,classa-1,ng_sd) # them thu tu vao lib thu tu
-		#print(lib_tt)
+		print(lib_tt)
 
 		if lib_tt[classa-1] == "-": # Neu khong phai la cuc tri thi giai het
 
@@ -469,7 +469,7 @@ items_lay = Solve_Inequal(biens, cuctri, he_bpt)
 print(items_lay)
 '''
 
-
+"""
 biens = ["h","l","c","w","b","p","n","S","W"] # Đặt ẩn tương ứng là lượng item lấy ở từng item
 cuctri = [0,0,0,0,0,0,0,1,-1]
 
@@ -482,3 +482,12 @@ he_bpt = ["100*h+2200*l+350*c+192*w+70*b+200*p+333*n-W==0", # Tổng khối lư�
 #print(len(giaihebpt(he_bpt,biens))) 
 items_lay = Solve_Inequal(biens, cuctri, he_bpt)
 print(items_lay)
+"""
+
+biens = ["m","g","h","c"] # Khai báo tên biến
+cuctri = [0,0,0,0]	# Khai báo biến có phải cực trị (0: không phải, 1: cực đại, -1: cực tiểu)
+he_bpt = ["2*m+5*g+7*h+10*c<=1000","2*m+5*g+10*h+15*c==500","4*m+8*g+11*h+9*c==1312",
+			"m>=1","g>=1","h>=1","c>=1"]
+
+nghiem = Solve_Inequal(biens, cuctri, he_bpt)[1]
+print(nghiem)
