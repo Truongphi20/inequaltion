@@ -123,10 +123,10 @@ Output:
     
 So the maximum value of $a+b$ is 3 when $(a,b) = (3,0),(2,1)$.
 
-As we can also see in Example 1, when adding the extreme condition P, only the above two solutions are satisfied.
+As we can also see in Example 1, when adding the extrema condition P, only the above two solutions are satisfied.
 
 #### Run example 3
-Not stopping there, if we add one more extreme condition that a-b must be minimal. We have an inequalities system as follows:
+Not stopping there, if we add one more extrema condition that a-b must be minimal. We have an inequalities system as follows:
 
 $$
 \left\{ {\begin{array}{*{20}{l}}
@@ -138,7 +138,7 @@ $$
 \end{array}} \right
 $$
 
-Similarly, we consider M to be an extreme variable to be solved, declare the variable, and set it to be the minima.
+Similarly, we consider M to be an extrem variable to be solved, declare the variable, and set it to be the minima.
 
     {'a':0,'b':0,'M':-1,'P':1}
     
@@ -154,4 +154,4 @@ From example 2 it is also easy to predict that the solution of the system of ine
 
 So the meaning of the solution process in example 3 is that first find the solutions that satisfy the condition in example 2, $a+b$ is the maxima, and among those solutions, choose the solutions that satisfy the second condition that $a-b$ must be minima.
 
-Therefore, it is necessary to pay attention to the order of extreme solutions when declaring variables. A different order will lead to different results
+Therefore, it is necessary to pay attention to the order of extrema solutions when declaring variables. A different order will lead to different results
