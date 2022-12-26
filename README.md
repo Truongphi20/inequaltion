@@ -94,7 +94,10 @@ As a result, the list has two components: the names of the variables and the the
 So the solutions $(a,b)$ of the system of inequalities are:
 
 <p align="center">
-$(6,-6)$, $(5,-5)$, $(4,-4)$, $(5,-4)$, $(3,-3)$, $(4,-3)$, $(2,-2)$, $(3,-2)$, $(4,-2)$, $(1,-1)$, $(2,-1)$, $(3,-1)$, $(1,0)$, $(2,0)$, $(3,0)$, $(2,1)$
+$(6,-6)$, $(5,-5)$, $(4,-4)$, $(5,-4)$, $(3,-3)$, $(4,-3)$, $(2,-2)$, $(3,-2)$,
+</p> 
+<p align="center">
+$(4,-2)$, $(1,-1)$, $(2,-1)$, $(3,-1)$, $(1,0)$, $(2,0)$, $(3,0)$, $(2,1)$
 </p> 
 
 #### Run example 2
