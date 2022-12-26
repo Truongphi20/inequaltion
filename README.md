@@ -126,7 +126,7 @@ So the maximum value of $a+b$ is 3 when $(a,b) = (3,0),(2,1)$.
 As we can also see in Example 1, when adding the extrema condition P, only the above two solutions are satisfied.
 
 #### Run example 3
-Not stopping there, if we add one more extrema condition that a-b must be minimal. We have an inequalities system as follows:
+Not stopping there, if we add one more extrema condition that $a-b$ must be minimal. We have an inequalities system as follows:
 
 $$
 \left\{ {\begin{array}{*{20}{l}}
