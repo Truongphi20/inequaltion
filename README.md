@@ -55,11 +55,11 @@ Output:
 #### Input file structure
 Look at the file "example1.csv", the structure of the input file has the following structure:
 
-        2*a+b<=6
-        a+b>=0
-        a-b>=1
-
-        {'a':0,'b':0}
+    2*a+b<=6
+    a+b>=0
+    a-b>=1
+    
+    {'a':0,'b':0}
 
 The first components are the inequalities, which are the first 3 lines in the example. The inequalities are separated by line breaks.
 The second element is the variable declaration and its extrema type, separated from the first element by a blank line.
