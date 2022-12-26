@@ -33,7 +33,7 @@ $$c.{a_1}.{x_1} + c.{a_2}.{x_2} +  \ldots  + c.{a_n}.{x_n} \ge c.V$$
 
 ## Usage
 ### Download
-To download the tool, select Code > Zip Download on Github page or type in Command Prompt on Windows or Terminal on other operating systems as follows:
+To download the tool, select ``Code > Zip Download`` on Github page or type in Command Prompt on Windows or Terminal on other operating systems as follows:
     
     git clone https://github.com/Truongphi20/inequaltion.git
 
