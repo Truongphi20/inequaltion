@@ -380,17 +380,18 @@ def Solve_Inequal(biens, cuctri, he_bpt):
 					tem += 1 
 
 			if tem == len(ng_sd):
-				classa = nearest(classa, ct_bor)
-				k = lib_tt[classa] - ct_bor[classa]
-				#print(f'k: {k}, {classa}')
-				#print(lib_ng)
-				#print(call_ng(lib_ng,classa+1)[0])
-				if k < 0 or k > len(call_ng(lib_ng,classa+1)[0])-1:
-					classa = classa -1 
-				lib_tt[classa] = lib_tt[classa] - ct_bor[classa]
-				#print(classa)
-				lib_ng = ClearLib_ng(lib_ng,classa+2)
-				lib_tt = ClearLib_tt(lib_tt,classa+1)
+				if ct_bor[0] != 0:
+					classa = nearest(classa, ct_bor)
+					k = lib_tt[classa] - ct_bor[classa]
+					#print(f'k: {k}, {classa}')
+					#print(lib_ng)
+					#print(call_ng(lib_ng,classa+1)[0])
+					if k < 0 or k > len(call_ng(lib_ng,classa+1)[0])-1:
+						classa = classa -1 
+					lib_tt[classa] = lib_tt[classa] - ct_bor[classa]
+					#print(classa)
+					lib_ng = ClearLib_ng(lib_ng,classa+2)
+					lib_tt = ClearLib_tt(lib_tt,classa+1)
 			classa += 1
 
 
