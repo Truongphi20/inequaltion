@@ -51,6 +51,24 @@ Output:
       -f FILE_INPUT, --file_input FILE_INPUT
       -v, --version         show version
       
-### Run the example
+### Run examples
+#### Input file structure
+Look at the file "example1.csv", the structure of the input file has the following structure:
 
+        2*a+b<=6
+        a+b>=0
+        a-b>=1
+
+        {'a':0,'b':0}
+
+The first components are the inequalities, which are the first 3 lines in the example. The inequalities are separated by line breaks.
+The second element is the variable declaration and its extrema type, separated from the first element by a blank line.
+There are three types of extrema:
+
+   - $0$ is none extrema
+   - $1$ is maxima
+   - $-1$ is minima
+
+_Note: If there are many extrema conditions, the algorithm will solve the extrema in order from right to left in the variable declaration._
+#### Run example 1
 
