@@ -72,7 +72,7 @@ There are three types of extrema:
 _Note: If there are many extrema conditions, the algorithm will solve the extrema in order from right to left in the variable declaration._
 
 #### Run example 1
-Assume or find the values of $a$ and $b$, ( $a,b \in \mathbb{Z}$ ) to satisfy the following linear inequalities:
+Suppose we have to find the values of $a$ and $b$, ( $a,b \in \mathbb{Z}$ ) to satisfy the following linear inequalities:
 
 $$
 \left\{ {\begin{array}{*{20}{l}}
@@ -141,7 +141,7 @@ $$
 \end{array}} \right
 $$
 
-Similarly, we consider M to be an extrem variable to be solved, declare the variable, and set it to be the minima.
+Similarly, we consider M to be an extrema variable to be solved, declare the variable, and set it to be the minima.
 
     {'a':0,'b':0,'M':-1,'P':1}
     
