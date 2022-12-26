@@ -379,17 +379,20 @@ def Solve_Inequal(biens, cuctri, he_bpt):
 					tem += 1 
 
 			if tem == len(ng_sd):
-				classa = nearest(classa, ct_bor)
-				k = lib_tt[classa] - ct_bor[classa]
-				#print(f'k: {k}, {classa}')
-				#print(lib_ng)
-				#print(call_ng(lib_ng,classa+1)[0])
-				if k < 0 or k > len(call_ng(lib_ng,classa+1)[0])-1:
-					classa = classa -1 
-				lib_tt[classa] = lib_tt[classa] - ct_bor[classa]
-				#print(classa)
-				lib_ng = ClearLib_ng(lib_ng,classa+2)
-				lib_tt = ClearLib_tt(lib_tt,classa+1)
+				if ct_bor[0] != 0: 
+					#print(classa)
+					classa = nearest(classa, ct_bor)
+					#print(classa)
+					k = lib_tt[classa] - ct_bor[classa]
+					#print(f'k: {k}, {classa}')
+					#print(lib_ng)
+					#print(call_ng(lib_ng,classa+1)[0])
+					if k < 0 or k > len(call_ng(lib_ng,classa+1)[0])-1:
+						classa = classa -1 
+					lib_tt[classa] = lib_tt[classa] - ct_bor[classa]
+					#print(classa)
+					lib_ng = ClearLib_ng(lib_ng,classa+2)
+					lib_tt = ClearLib_tt(lib_tt,classa+1)
 			classa += 1
 
 
@@ -486,7 +489,7 @@ print(items_lay)
 
 biens = ["m","g","h","c"] # Khai báo tên biến
 cuctri = [0,0,0,0]	# Khai báo biến có phải cực trị (0: không phải, 1: cực đại, -1: cực tiểu)
-he_bpt = ["2*m+5*g+7*h+10*c<=1000","2*m+5*g+10*h+15*c==500","4*m+8*g+11*h+9*c==1312",
+he_bpt = ["2*m+5*g+7*h+10*c<=1000","2*m+5*g+10*h+15*c==500","4*m+8*g+11*h+9*c==952",
 			"m>=1","g>=1","h>=1","c>=1"]
 
 nghiem = Solve_Inequal(biens, cuctri, he_bpt)[1]
