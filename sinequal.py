@@ -339,7 +339,7 @@ def Solve_Inequal(biens, cuctri, he_bpt):
 	## Calculation
 	classa = 1
 	pho = phogia(order[-1],lib_bp[-1]) # Pho cua bien cuc tri
-	print(pho)
+	#print(pho)
 	lib_ng = {"/"+str(i):pho[i] for i in range(len(pho))} #Them vao thu vien
 	#print(lib_ng)
 	lib_tt = {}
@@ -356,7 +356,7 @@ def Solve_Inequal(biens, cuctri, he_bpt):
 		#print(classa)
 
 		lib_tt = add_libtt(cuctri,lib_tt,order_tl,classa-1,ng_sd) # them thu tu vao lib thu tu
-		print(lib_tt)
+		#print(lib_tt)
 
 		if lib_tt[classa-1] == "-": # Neu khong phai la cuc tri thi giai het
 
@@ -430,47 +430,6 @@ def Solve_Inequal(biens, cuctri, he_bpt):
 	#print(Tra_kq_ct(lib_ng,order))
 	return  [biens[index] for index in order], Tra_kq_ct(lib_ng,order)
 
-'''
-biens = ["a","b","M","P"] # Khai báo tên biến
-cuctri = [0,0,-1,1]	# Khai báo biến có phải cực trị (0: không phải, 1: cực đại, -1: cực tiểu)
-he_bpt = ["2*a+b<=6","a+b>=0","a-b>=1","a+b-P==0","a-b-M==0"]
-
-print(Solve_Inequal(biens, cuctri, he_bpt))
-'''
-'''
-biens = ["m","g","h","c","G"] # Khai báo tên biến
-cuctri = [0,0,0,0,1]	# Khai báo biến có phải cực trị (0: không phải, 1: cực đại, -1: cực tiểu)
-he_bpt = ["2*m+5*g+7*h+10*c<=100","2*m+5*g+10*h+15*c<=50", "4*m+8*g+11*h+19*c-G==0",
-			"m>=1","g>=1","h>=1","c>=1"]
-
-print(Solve_Inequal(biens, cuctri, he_bpt))
-'''
-"""
-biens = ["h","c","w","b","W"] # Đặt ẩn tương ứng là lượng item lấy ở từng item
-cuctri = [0,0,0,0,-1]
-
-he_bpt = ["5*h+7*c+6*w+3*b-W==0", # Tổng khối lượng hàng hóa phải bé hơn 3kg
-            "W<=6","W>=1",
-            "h>=0","c>=0", # Các lượng item phải lớn hơn hoặc bằng 0
-            "w>=0","b>=0"]
-#print(len(giaihebpt(he_bpt,biens))) 
-items_lay = Solve_Inequal(biens, cuctri, he_bpt)
-print(items_lay)
-"""
-
-'''
-biens = ["h","b","S","W"] # Đặt ẩn tương ứng là lượng item lấy ở từng item
-cuctri = [0,0,1,-1]
-
-he_bpt = ["10*h+7*b-W==0", # Tổng khối lượng hàng hóa phải bé hơn 3kg
-            "W<=20","W>=1",
-            "15*h+10*b-S==0", # Tong score phai lon nhat
-            "h>=0", # Các lượng item phải lớn hơn hoặc bằng 0
-            "b>=0"]
-#print(len(giaihebpt(he_bpt,biens))) 
-items_lay = Solve_Inequal(biens, cuctri, he_bpt)
-print(items_lay)
-'''
 
 """
 biens = ["h","l","c","w","b","p","n","S","W"] # Đặt ẩn tương ứng là lượng item lấy ở từng item
@@ -487,10 +446,12 @@ items_lay = Solve_Inequal(biens, cuctri, he_bpt)
 print(items_lay)
 """
 
+'''
 biens = ["m","g","h","c"] # Khai báo tên biến
 cuctri = [0,0,0,0]	# Khai báo biến có phải cực trị (0: không phải, 1: cực đại, -1: cực tiểu)
-he_bpt = ["2*m+5*g+7*h+10*c<=1000","2*m+5*g+10*h+15*c==500","4*m+8*g+11*h+9*c==952",
+he_bpt = ["2*m+5*g+7*h+10*c<=1000","2*m+5*g+10*h+15*c<=500","4*m+8*g+11*h+19*c==977",
 			"m>=1","g>=1","h>=1","c>=1"]
 
 nghiem = Solve_Inequal(biens, cuctri, he_bpt)[1]
 print(nghiem)
+'''
