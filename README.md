@@ -158,3 +158,8 @@ From example 2 it is also easy to predict that the solution of the system of ine
 So the meaning of the solution process in example 3 is that first find the solutions that satisfy the condition in example 2, $a+b$ is the maxima, and among those solutions, choose the solutions that satisfy the second condition that $a-b$ must be minima.
 
 Therefore, it is necessary to pay attention to the order of extrema solutions when declaring variables. A different order will lead to different results
+
+## Application
+
+- [Finding the Hamiltonian Path and Circuit](https://github.com/Truongphi20/hamilpath)
+- [Solve the problem to shorten the project completion time](https://github.com/Truongphi20/crashingproject)
