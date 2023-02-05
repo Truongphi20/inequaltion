@@ -412,7 +412,7 @@ def Solve_Inequal(biens, cuctri, he_bpt):
 			if len(phoct) == 0:
 				#print(ng_sd)
 				k = lib_tt[classa-1] - ct_bor[classa-1]
-				if k < 0 or k > len(call_ng(ng_sd,classa+1)[0])-1:
+				if k < 0 or k > len(call_ng(ng_sd,classa-1)[1])-1:
 					classa = classa -1
 				#print(lib_tt)
 				#print(f'{lib_tt[classa-1]}- {ct_bor[classa-1]}')
